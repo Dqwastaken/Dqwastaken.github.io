@@ -9,15 +9,26 @@
     <title>JJ's Website</title>
 </head>
 <body>
-    <p>HIIII</p>
-    <h1>hello</h1>
-    <div class="container">
-        <h2>Welcome to JJ's Website</h2>
-        <p>This is a simple HTML page.</p>
-        <form action="submit.php" method="post">
-            <input type="text" name="name" placeholder="Enter your name" required>
-        </form>
-        <button class="submit">Submit!</button>
-     </div>
-</body>
+    <input type="text" id="myTextField" placeholder="Enter text here">
+    <button onclick="saveText()">Save Text</button>
+    <p id="displayArea"></p>
+  
+    <script>
+      function saveText() {
+        const textField = document.getElementById("myTextField");
+        const textValue = textField.value;
+        localStorage.setItem("savedText", textValue);
+        displayText();
+      }
+  
+      function displayText() {
+          const savedText = localStorage.getItem("savedText");
+          const displayArea = document.getElementById("displayArea");
+          displayArea.textContent = "Saved Text: " + savedText;
+      }
+  
+      //Display saved text on page load
+      displayText();
+    </script>
+  </body>
 </html>
