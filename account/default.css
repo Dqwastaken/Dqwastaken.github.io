@@ -1,0 +1,56 @@
+.sidebar {
+    position: fixed;
+    width:20dvw;
+    height:100dvh;
+    background-image:linear-gradient(to bottom, rgb(75, 75, 75), rgb(46, 46, 46));
+    padding:2%;
+}
+
+.sidebar .btn {
+    background-color:rgb(228, 228, 228);
+    border-radius:8px;
+    display: block;
+    width: 80%;
+    padding:8px;
+    margin: 0 auto;
+    text-align: center;
+    color:rgb(70, 70, 70);
+    text-decoration:none;
+    box-shadow : 0 0 5px rgb(0, 0, 0);
+}
+
+.sidebar .btn:hover {
+    background-color:rgb(255, 255, 255);
+    color:rgb(141, 112, 189);
+    box-shadow: 0 0 10px rgb(141, 112, 189);
+}
+
+.logout {
+    position: absolute;
+    border-radius:10px;
+    padding:10px;
+    top: 2dvh;
+    left: 90dvw;
+    border:1px solid rgb(141, 112, 189);
+    background-color:rgb(221, 221, 221);
+    color:rgb(141, 112, 189)
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 100dvw;
+        height: 20dvh;
+        position: relative;
+    }
+    .sidebar .btn {
+        width: 100dvw;
+        margin: 0;
+    }
+    .logout {
+        position: relative;
+        top: 0;
+        left: 0;
+        border-radius: 0;
+        width: 100%;
+    }
+}
