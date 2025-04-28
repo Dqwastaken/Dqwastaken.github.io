@@ -17,6 +17,7 @@
     color:rgb(70, 70, 70);
     text-decoration:none;
     box-shadow : 0 0 5px rgb(0, 0, 0);
+    margin-bottom:10%;
 }
 
 .sidebar .btn:hover {
@@ -41,6 +42,9 @@
         width: 100dvw;
         height: 20dvh;
         position: relative;
+    }
+    .sidebar .btn {
+        margin-bottom:3%;
     }
     .logout {
         position: relative;
