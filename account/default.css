@@ -42,10 +42,6 @@
         height: 20dvh;
         position: relative;
     }
-    .sidebar .btn {
-        width: 100dvw;
-        margin: 0;
-    }
     .logout {
         position: relative;
         top: 0;
