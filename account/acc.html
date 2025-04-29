@@ -22,6 +22,9 @@
     </div>
     <button class="logout" id="logoutb">Logout</button>
     <script>
+        function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
         logoutb = document.getElementById("logoutb");
         function animate() {
             let position = 0;
@@ -38,7 +41,10 @@
         }
         
         logoutb.addEventListener("click", function() {
-            requestAnimationFrame(animate);
+            if (isMobile() == false) {
+                requestAnimationFrame(animate);
+            }
+
             setTimeout(function() {
                 window.location.href = "http://jjnagy.me/grayscales"; // Redirect to the desired URL
             }, 1500); // Redirect after 2 seconds
