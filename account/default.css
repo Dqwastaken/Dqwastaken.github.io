@@ -31,13 +31,28 @@
 
 .content {
     margin-left: 22dvw;
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(241, 241, 241);
     height: 100dvh;
     overflow-y: auto;
 }
 .info {
-    padding:20px;
+    h1 {
+        font-size: 2em;
+        background-image: linear-gradient(to right, rgb(239, 209, 240), rgb(243, 205, 235));
+        border: 2px solid rgb(116, 94, 151);
+        border-radius:10px;
+        padding: 10px;
+        padding-bottom:2%;
+    }
     
+    p {
+        padding-top: 2%;
+    }
+    margin-top:5dvh;
+    text-align: center;
+    padding:20px;  
+
+      
 }
 
 button:hover {
@@ -76,5 +91,9 @@ button:hover {
         left: 0;
         border-radius: 0;
         width: 100%;
+    }
+    .content {
+        margin-left: 0;
+        height: 80dvh;
     }
 }
