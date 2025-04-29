@@ -20,9 +20,29 @@
         <p>Feel free to explore the options available in the sidebar.</p>
         </div>
     </div>
-    <button class="logout">Logout</button>
+    <button class="logout" id="logoutb">Logout</button>
     <script>
-
+        logoutb = document.getElementById("logoutb");
+        function animate() {
+            let position = 0;
+            function frame() {
+                if (position <= -200) { // Move 200px to the left
+                    cancelAnimationFrame(animationId);
+                } else {
+                    position -= 5; // Move 5px per frame
+                    logoutb.style.transform = `translateY(${position}px)`;
+                    animationId = requestAnimationFrame(frame);
+                }
+            }
+            let animationId = requestAnimationFrame(frame);
+        }
+        
+        logoutb.addEventListener("click", function() {
+            requestAnimationFrame(animate);
+            setTimeout(function() {
+                window.location.href = "http://jjnagy.me/grayscales"; // Redirect to the desired URL
+            }, 1500); // Redirect after 2 seconds
+        });
     </script>
 </body>
 </html>
