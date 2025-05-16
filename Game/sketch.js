@@ -1,11 +1,12 @@
 let bubbles = [];
 let bubbleCount = 1;
-let money = 0;
+let money = 50;
 let b;
 let shopOpen = false;
 let bubbleinterval;
 let speed = 2000;
 let id = [];
+let level = 1;
 
 
 function setup() {
@@ -24,29 +25,29 @@ function setup() {
 
 function draw() {
     background(0);
-    for (let i = 0; i < bubbles.length; i++) {
+    // Loop backwards to safely remove faded bubbles
+    for (let i = bubbles.length - 1; i >= 0; i--) {
         bubbles[i].show();
-        bubbles[i].die();
-        
-    } 
-  textSize(32);
-  fill(255);
-  stroke(color(200, 160, 0));
-  strokeWeight(4);
-  text(`Money: ${money}`, 50, 50);
-  text(`Production Rate: ${speed/1000}/s`, 50, 100);
-  b.show();
-  if (shopOpen) {
-    shop.show();
-    button2.show();
-    button2.a = true;
-    shop.a = true;
-  }
-  else {
-    button2.a = false;
-    shop.a = false;
-  }
- 
+        if (bubbles[i].alpha <= 0) {
+            bubbles.splice(i, 1);
+        }
+    }
+    textSize(32);
+    fill(255);
+    stroke(color(200, 160, 0));
+    strokeWeight(4);
+    text(`Money: ${money}`, 50, 50);
+    text(`Production Rate: ${speed/1000}/s`, 50, 100);
+    b.show();
+    if (shopOpen) {
+        shop.show();
+        button2.show();
+        button2.a = true;
+        shop.a = true;
+    } else {
+        button2.a = false;
+        shop.a = false;
+    }
 }
 
 
@@ -54,7 +55,8 @@ function mousePressed() {
     for (let i = 0; i < bubbles.length; i++) {
         if (bubbles[i].clicked(mouseX, mouseY)) {
             bubbles.splice(i, 1);
-            money += 1;
+            money += bubbles[i].id[0];
+            level += 0.3;
         }
     }
     if (b.clicked(mouseX, mouseY)) {
@@ -72,6 +74,7 @@ function mousePressed() {
                 money -= button2.m;
                 button2.m *= 1.5;
                 speed *= 0.6;
+                
                 console.log("Bought production rate");
                 clearInterval(bubbleinterval);
                 bubbleinterval = setInterval(createbubble, speed);
@@ -84,8 +87,14 @@ function mousePressed() {
 
 function createbubble() {
     id = [];
-    id.push(int(random(1, (speed/1000)*2)));
-    bubbles.push(new bubble(id,true,random(0,width), random(0,height), random(10, 50), color(random(1, 255), random(1, 255), random(1, 255)))); 
+    let radius = random(10, 50);
+
+    id.push(int(random(3, level/(radius/10))));
+    if (id[0] < 1) {
+        id[0] = 1;
+    }
+
+    bubbles.push(new bubble(id,true,random(0,width), random(0,height), radius, color(random(1, 255), random(1, 255), random(1, 255)))); 
 }
 
 class button {
