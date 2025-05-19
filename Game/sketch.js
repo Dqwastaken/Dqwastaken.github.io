@@ -1,6 +1,6 @@
 let bubbles = [];
 let bubbleCount = 1;
-let money = 50;
+let money = 0;
 let b;
 let shopOpen = false;
 let bubbleinterval;
@@ -49,13 +49,26 @@ function draw() {
         shop.a = false;
     }
 }
-
+function underone(x) {
+    if (x < 1) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
 
 function mousePressed() {
+    // bubble clicked
     for (let i = 0; i < bubbles.length; i++) {
         if (bubbles[i].clicked(mouseX, mouseY)) {
+            // money += int(bubbles[i].id[0] + (underdone(parseInt(bubbles[i].id[0]))));
+            let value = bubbles[i].id[0];
+            if (value < 1) {
+                value = 1;
+            }
+            money += (typeof value === "undefined" ? 1 : int(value));
             bubbles.splice(i, 1);
-            money += bubbles[i].id[0];
             level += 0.3;
         }
     }
@@ -69,10 +82,12 @@ function mousePressed() {
             shopOpen = true;
         }
     }
+    //production rate
     if (button2.clicked(mouseX,mouseY) && button2.a) {
         if (money >= button2.m) {
                 money -= button2.m;
                 button2.m *= 1.5;
+                button2.m = Math.ceil(button2.m);
                 speed *= 0.6;
                 
                 console.log("Bought production rate");
